@@ -5,10 +5,16 @@ from matplotlib.lines import Line2D
 import sys 
 import re 
 
-fig_name = '100P_fatbands.png'
-title_name = '100P, fat-bands'
-fermi = -6.233705
+fig_name = '101D_fatbands.png'
+title_name = '101D, fat-bands'
 
+fermi = -5.599590
+
+k_labels = [
+            (0.000000, 'X'),
+            (0.144983, r'$\Gamma$'),
+            (0.261655, 'Y')]
+x_max = 0.261655
 
 plt.rcParams["font.family"] = "serif"
 plt.rcParams["font.serif"] = ["Times New Roman"] + plt.rcParams["font.serif"]
@@ -169,10 +175,7 @@ for j, filename in enumerate(files_to_plot):
         ax.set_title(orbital_name, fontsize=14, fontweight='bold')
 
 # ---------------------------- formatting 
-k_labels = [
-            (0.000000, 'X'),
-            (0.129427, r'$\Gamma$'),
-            (0.246100, 'Y')]
+
 k_values = [label[0] for label in k_labels]
 k_names = [label[1] for label in k_labels]
 for ax in axes:
@@ -184,7 +187,7 @@ for ax in axes:
     ax.axhline(y=0, color='r', linestyle='--', linewidth=1)
     ax.set_ylim(-2,2)
     #ax.set_ylim(-2.0,2.0)
-    ax.set_xlim(0,0.246100)
+    ax.set_xlim(0,x_max)
     ax.tick_params(axis='y', labelsize=tick_label_font['fontsize'])
     for label in ax.get_yticklabels():
         label.set_fontweight(tick_label_font['fontweight'])
@@ -201,4 +204,16 @@ plt.tight_layout()
 plt.savefig(fig_name, dpi=300, bbox_inches='tight')
 
 plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
 
